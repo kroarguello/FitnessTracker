@@ -19,29 +19,17 @@ app.use(express.static("public"));
 var PORT = process.env.PORT || 3000;
 //this is in seed.js
 //const Workout = require("./workoutPlan.js");
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 
 
-// ================================================================================
 // ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
-// ================================================================================
 
-//require("./routes/apiRoutes")(app);
-//require("./routes/htmlRoutes")(app);
 
 app.get("/exercise", ({ body }, res) => {
     console.log("new workout");
     res.sendFile(path.join(__dirname, "./public/exercise.html"))
-    //User.create(body)
-    //  .then(dbUser => {
-    //    res.json(dbUser);
-    //  })
-    //  .catch(err => {
-    //    res.json(err);
-    //  });
+    
   });
 
  /* app.get("/exercise?", ({ body }, res) => {
@@ -63,13 +51,7 @@ app.get("/exercise", ({ body }, res) => {
   app.get("/stats", ({ body }, res) => {
     console.log("STATS");
     res.sendFile(path.join(__dirname, "./public/stats.html"))
-    //User.create(body)
-    //  .then(dbUser => {
-    //    res.json(dbUser);
-    //  })
-    //  .catch(err => {
-    //    res.json(err);
-    //  });
+    
   });
 
 
