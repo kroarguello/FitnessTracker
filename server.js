@@ -45,8 +45,19 @@ app.get("/exercise", ({ body }, res) => {
 
 
  //api
+
  
- app.post("/api/workouts", async (req, res) => {
+app.get("/api/workouts", (req, res) => {
+    db.Workout.find({})
+        .then(event => {
+            res.json(event);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+app.post("/api/workouts", async (req, res) => {
     const response = await db.Workout.create({ type: "workout" })
     res.json(response);
 });
@@ -63,15 +74,6 @@ app.put("/api/workouts/:id", (req, res) => {
         });
 })
 
-app.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
-        .then(event => {
-            res.json(event);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-});
 
 app.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
