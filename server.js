@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-//const db = require("./models");
+const db = require("./models");
 const path = require("path");
 
 //express
@@ -20,11 +20,10 @@ var PORT = process.env.PORT || 3000;
 
 //this is in seed.js
 
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 
-//const { update } = require("./models/workoutPlan");
-//const { Workout } = require("./models");
+
 
 // ROUTER
 
@@ -56,6 +55,39 @@ app.get("/api/workouts", (req, res) => {
             res.json(err);
         });
 });
+
+
+
+app.post("/api/workouts",({body}, res) => {
+    db.Workout.create(body)
+    .then(event => {
+        res.json(event);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+
+});
+
+app.post("/api/workouts", ({ body }, res) => {
+    db.Workout.create({
+      type: body.type,
+      name: body.name,
+      duration: body.totalDuration,
+      weight: body.weight,
+      reps: body.reps,
+      sets: body.sets,
+      distance: body.distance
+    })
+      .then(dbWorkout => {
+        console.log(dbWorkout);
+        console.log(res);
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
 
 // =============================================================================
