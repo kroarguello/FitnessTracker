@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const db = require("./models");
+//const db = require("./models");
 const path = require("path");
 
 //express
@@ -20,11 +20,11 @@ var PORT = process.env.PORT || 3000;
 
 //this is in seed.js
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 
-const { update } = require("./models/workoutPlan");
-const { Workout } = require("./models");
+//const { update } = require("./models/workoutPlan");
+//const { Workout } = require("./models");
 
 // ROUTER
 
@@ -48,34 +48,6 @@ app.get("/exercise", ({ body }, res) => {
 
  
 app.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
-        .then(event => {
-            res.json(event);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-});
-
-app.post("/api/workouts", async (req, res) => {
-    const response = await db.Workout.create({ type: "workout" })
-    res.json(response);
-});
-
-app.put("/api/workouts/:id", (req, res) => {
-    const id = req.params.id;
-    console.log(req.body);
-    db.Workout.findByIdAndUpdate({ _id: id }, { $push: { exercises: req.body } }, { new: true })
-        .then(event => {
-            res.json(event);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-})
-
-
-app.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
         .then(event => {
             res.json(event);
