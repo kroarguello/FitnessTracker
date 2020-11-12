@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 //const db = require("./models");
-
+const path = require("path");
 //express
 
 const app = express();
@@ -34,7 +34,7 @@ var PORT = process.env.PORT || 3000;
 
 app.get("/exercise", ({ body }, res) => {
     console.log("new workout");
-
+    res.sendFile(path.join(__dirname, "./public/exercise.html"))
     //User.create(body)
     //  .then(dbUser => {
     //    res.json(dbUser);
@@ -44,8 +44,9 @@ app.get("/exercise", ({ body }, res) => {
     //  });
   });
 
-  app.get("/exercise?", ({ body }, res) => {
+ /* app.get("/exercise?", ({ body }, res) => {
       console.log("continue workout");
+      res.sendFile(path.join(__dirname, "./public/exercise.html"))
     //User.create(body)
     //  .then(dbUser => {
     //    res.json(dbUser);
@@ -54,13 +55,14 @@ app.get("/exercise", ({ body }, res) => {
     //    res.json(err);
     //  });
   });
-
+*/
   
 
 
 
   app.get("/stats", ({ body }, res) => {
     console.log("STATS");
+    res.sendFile(path.join(__dirname, "./public/stats.html"))
     //User.create(body)
     //  .then(dbUser => {
     //    res.json(dbUser);
