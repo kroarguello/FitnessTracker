@@ -17,9 +17,9 @@ app.use(express.static("public"));
 
 // connection and Mongodb
 var PORT = process.env.PORT || 3000;
-
+//this is in seed.js
 //const Workout = require("./workoutPlan.js");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
 
 
 
