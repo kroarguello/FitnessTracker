@@ -18,7 +18,7 @@ const WorkoutSchema = new Schema({
        reps:{type: Number},
        sets:{type: Number},
        distance:{type: Number},
-      // resistanceDuration:{type: Number,trim:true, required:true}
+     
 
     }]
 

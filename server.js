@@ -93,7 +93,14 @@ app.post("/api/workouts", ({ body }, res) => {
       });
   });
 
-  app.get("/api/workouts/range", ({ body }, res) => {
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+    .then(event => {
+        res.json(event);
+    })
+    .catch(err => {
+        res.json(err);
+    });
 
   });
 
